@@ -104,6 +104,9 @@ todoForm.addEventListener("submit", (e) => {
         checkbox.setAttribute("type", "checkbox");
         checkbox.setAttribute("name", "check");
         checkbox.classList.add("form-check-input", "me-1")        // Tambahkan class styling ke checkbox
+
+        checkbox.onclick = checkTodo                                   // Ketika checkbox diklik, maka todo akan tercentang (cek fungsi di bawah)
+
        
         // <label>{inputTodo[0].value}</label>
         const label = document.createElement("label");            // Elemen label (untuk menampung const text)

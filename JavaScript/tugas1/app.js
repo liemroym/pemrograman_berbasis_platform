@@ -120,20 +120,20 @@ todoForm.addEventListener("submit", (e) => {
         //     <label>{inputTodo[0].value}</label>
         // </div>
         const div = document.createElement("div");                // Elemen div, wrapper input checkbox + label
-        div.classList.add("todo", "d-inline-block")                                 // Tambahkan class todo ke div  
+        div.classList.add("todo", "d-inline-block")               // Tambahkan class todo ke div  
         div.appendChild(checkbox);                                // Append checkbox dan label menjadi child dari div
         div.appendChild(label);
         
-        // Atribut onclick dari suatu elemen dapat diassign dengan fungsi 
-        // Contoh dalam kasus ini, div diassign fungsi checkTodo ketika diklik
-        div.onclick = checkTodo                                   // Ketika todo diklik, maka todo akan tercentang (cek fungsi di bawah)
         
         // <button onclick="removeThisTodo">X</button>
         const removeBtn = document.createElement("button");       // Elemen button (untuk menghapus todo dari list)
         removeBtn.innerHTML = "delete";
         removeBtn.classList.add("btn", "btn-outline-danger", "text-uppercase", "fw-semibold");     // Tambahkan class styling ke button
+        
+        // Atribut onclick dari suatu elemen dapat diassign dengan fungsi 
+        // Contoh dalam kasus ini, button Delete diassign fungsi removeThisTodo ketika diklik
         removeBtn.onclick = removeThisTodo                        // Ketika button diklik, maka todo tersebut akan hilang (cek fungsi di bawah)
-
+        
         // <li>
         //     <div>
         //         <input />
@@ -145,7 +145,8 @@ todoForm.addEventListener("submit", (e) => {
         list.appendChild(div);                                    // Append div dan button menjadi child dari li
         list.appendChild(removeBtn)
         list.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center", "mb-2", "bg-dark");    // Tambahkan class styling ke li
-
+        list.onclick = checkTodo                                  // Ketika todo diklik, maka todo akan tercentang (cek fungsi di bawah)
+        
         // Append list menjadi child dari todoList
         // <ul>                                       
         //     <li>                                  
@@ -165,11 +166,14 @@ todoForm.addEventListener("submit", (e) => {
 // Mencentang todo ketika label maupun checkbox dari todo diklik
 // Fungsi untuk event click pada div wrapper label dan checkbox
 function checkTodo(e) {
-    // Karena user mengklik label atau checkbox dari todo, ambil parent (div wrapper) dari todo terlebih dahulu
-    // agar kita dapat mengakses sibling dari elemen yang diklik
-    const todo = e.target.parentElement     // Parent dari checkbox maupun label adalah sama, yaitu div wrapper
-    const checkbox = todo.childNodes[0]     // Child pertama dari div wrapper pasti merupakan checkbox
-    const label = todo.childNodes[1]        // Child kedua dari div wrapper pasti merupakan label
+    // Mencari div wrapper dari checkbox dan label
+    // Bila label / div diklik, maka todoDiv diambil dari parent dengan tag div terdekat (yaitu div wrapper label / div itu sendiri)
+    let todoDiv = e.target.closest('div')      
+    if (e.target.tagName == 'LI') {            // Bila bagian yang diklik adalah li (bagian di luar checkbox dan label), maka ambil child pertama dari li
+        todoDiv = e.target.childNodes[0]
+    }
+    const checkbox = todoDiv.childNodes[0]     // Child pertama dari div wrapper pasti merupakan checkbox
+    const label = todoDiv.childNodes[1]        // Child kedua dari div wrapper pasti merupakan label
     
     // Ubah value dari checkbox. Apabila sebelumnya tercentang, maka hilangkan centangnya
     // Apabila sebelumnya tidak tercentang, berikan tanda centang

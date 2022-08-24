@@ -113,7 +113,7 @@ todoForm.addEventListener("submit", (e) => {
         const text = document.createTextNode(inputTodo[0].value); // Text node (isinya input dari pengguna)
         label.appendChild(text);
         label.setAttribute("for", "check");                       // Set atribut for untuk referensi ke checkbox
-        label.classList.add("form-check-label", "fw-semibold", "text-light");   // Tambahkan class styling ke label
+        label.classList.add("form-check-label", "fw-semibold", "text-light", "user-select-none");  // Tambahkan class styling ke label
         
         // <div class="todo" onclick="checkTodo">
         //     <input type="checkbox" name="check" />

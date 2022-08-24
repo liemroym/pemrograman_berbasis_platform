@@ -18,21 +18,42 @@
     />
     <link rel="stylesheet" href="./style.css" />
   </head>
-<body>
-  <h1 class="fs-1 fw-bold">To Do List!</h1>
+  <body>
+    <div
+      class="container py-5 d-flex flex-column justify-content-center"
+    >
+      <section class="title d-flex justify-content-between mb-3">
+        <!-- Title -->
+        <h1 id="title" class="fs-1 fw-bold">To Do List</h1>
 
-    <!-- Form Utama -->
-    <form id="todoForm">
-        <input name="todo" type="text" placeholder="Add to do">
-        <input type="submit" value="Add">
-    </form>
+        <!-- Tombol Remove All -->
+        <button onclick="removeAllTodos()" type="button" class="btn btn-danger fw-semibold">Remove all</button>
+      </section>
 
-    <!-- Tombol Remove All -->
-    <button onclick="removeAllTodos()" type="button" class="btn-close btn-close-white" disabled aria-label="Close"></button>
-    
-    <!-- Todo List -->
-    <ul id="todolist"></ul>
-    
-    <script src="./app.js"> </script>
+      <!-- Form Utama -->
+      <form id="todoForm" class="input-group mb-3">
+        <input
+          name="todo"
+          type="text"
+          class="form-control"
+          placeholder="What do you want to do in today?"
+        />
+        <button
+          class="btn btn-outline-success fw-semibold"
+          type="submit"
+          id="button-addon2"
+        >
+          Add Todo
+        </button>
+      </form>
+
+      <!-- Todo List -->
+      <section class="todos mt-5">
+        <h2 class="fs-3 fw-bold">To Do List</h2>
+        <ul class="list-group" id="todolist"></ul>
+      </section>
+    </div>
+
+    <script src="./app.js"></script>
   </body>
 </html>

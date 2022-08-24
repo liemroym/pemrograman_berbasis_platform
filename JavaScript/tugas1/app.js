@@ -102,19 +102,22 @@ todoForm.addEventListener("submit", (e) => {
         // <input type="checkbox" name="check"/>
         const checkbox = document.createElement("input");         // Elemen input checkbox
         checkbox.setAttribute("type", "checkbox");
-        checkbox.setAttribute("name", "check")
+        checkbox.setAttribute("name", "check");
+        checkbox.classList.add("form-check-input", "me-1")        // Tambahkan class styling ke checkbox
        
         // <label>{inputTodo[0].value}</label>
         const label = document.createElement("label");            // Elemen label (untuk menampung const text)
         const text = document.createTextNode(inputTodo[0].value); // Text node (isinya input dari pengguna)
         label.appendChild(text);
+        label.setAttribute("for", "check");                       // Set atribut for untuk referensi ke checkbox
+        label.classList.add("form-check-label", "fw-semibold", "text-light");   // Tambahkan class styling ke label
         
         // <div class="todo" onclick="checkTodo">
         //     <input type="checkbox" name="check" />
         //     <label>{inputTodo[0].value}</label>
         // </div>
         const div = document.createElement("div");                // Elemen div, wrapper input checkbox + label
-        div.classList.add("todo")                                 // Tambahkan class todo ke div  
+        div.classList.add("todo", "d-inline-block")                                 // Tambahkan class todo ke div  
         div.appendChild(checkbox);                                // Append checkbox dan label menjadi child dari div
         div.appendChild(label);
         
@@ -124,7 +127,8 @@ todoForm.addEventListener("submit", (e) => {
         
         // <button onclick="removeThisTodo">X</button>
         const removeBtn = document.createElement("button");       // Elemen button (untuk menghapus todo dari list)
-        removeBtn.innerHTML = "X"        
+        removeBtn.innerHTML = "delete";
+        removeBtn.classList.add("btn", "btn-outline-danger", "text-uppercase", "fw-semibold");     // Tambahkan class styling ke button
         removeBtn.onclick = removeThisTodo                        // Ketika button diklik, maka todo tersebut akan hilang (cek fungsi di bawah)
 
         // <li>
@@ -137,6 +141,7 @@ todoForm.addEventListener("submit", (e) => {
         const list = document.createElement("li");                // Elemen li, wrapper todo
         list.appendChild(div);                                    // Append div dan button menjadi child dari li
         list.appendChild(removeBtn)
+        list.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center", "mb-2", "bg-dark");    // Tambahkan class styling ke li
 
         // Append list menjadi child dari todoList
         // <ul>                                       
@@ -219,3 +224,8 @@ function removeAllTodos(){
 
     todoList.innerHTML = "";
 }
+
+// add today's date to title
+const todayDate = document.getElementById("title");
+const date = new Date().toLocaleDateString();
+todayDate.innerHTML += ` ${date}`;

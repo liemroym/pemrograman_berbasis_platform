@@ -15,6 +15,7 @@ todoForm.addEventListener('submit', (e) => {
     const div = document.createElement('div')
     const list = document.createElement("li");
     const checkbox = document.createElement('input')
+    const checkboxLabel = document.createElement("label");
     if(inputTodo[0].value == ""){
         alert("To Do List tidak boleh kosong")
     }
@@ -23,7 +24,9 @@ todoForm.addEventListener('submit', (e) => {
         div.classList.add('todo')
         label.appendChild(text);
         checkbox.setAttribute('name', 'check')
+        checkboxLabel.setAttribute('for', 'checkbox')
         div.appendChild(checkbox);
+        div.appendChild(checkboxLabel);
         div.appendChild(label);
         div.addEventListener('click', checkTodo)
         list.appendChild(div);

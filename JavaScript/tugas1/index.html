@@ -19,16 +19,9 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <div
-      class="container py-5 d-flex flex-column justify-content-center"
-    >
-      <section class="title d-flex justify-content-between mb-3">
-        <!-- Title -->
-        <h1 id="title" class="fs-1 fw-bold">To Do List</h1>
-
-        <!-- Tombol Remove All -->
-        <button onclick="removeAllTodos()" type="button" class="btn btn-danger fw-semibold">Remove all</button>
-      </section>
+    <div class="container py-5 d-flex flex-column justify-content-center">
+      <!-- Title -->
+      <h1 id="title" class="fs-1 fw-bold">To Do List</h1>
 
       <!-- Form Utama -->
       <form id="todoForm" class="input-group mb-3">
@@ -49,7 +42,18 @@
 
       <!-- Todo List -->
       <section class="todos mt-5">
-        <h2 class="fs-3 fw-bold">To Do List</h2>
+        <div class="title d-flex justify-content-between mb-3">
+          <h2 class="fs-3 fw-bold">To Do List</h2>
+
+          <!-- Tombol Remove All -->
+          <button
+            onclick="removeAllTodos()"
+            type="button"
+            class="btn btn-danger fw-semibold"
+          >
+            Remove All Todos
+          </button>
+        </div>
         <ul class="list-group" id="todolist"></ul>
       </section>
     </div>
